@@ -40,7 +40,9 @@ Add the following to your `mcp.json`:
 - Watch: `bun run build:watch`
 - Inspector: `bun inspector`
 
-## Postgres Connection Flow via 
+## Postgres Connection Flow via Cloudflare Tunnel
+
+This diagram describes the flow I use to connect to my VPS's PostgreSQL database from my local machine.
 
 ```mermaid
 sequenceDiagram
