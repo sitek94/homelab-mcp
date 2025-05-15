@@ -1,0 +1,43 @@
+{
+	"name": "homelab-mcp",
+	"description": "MCP server that helps managing my homelab running on a VPS",
+	"keywords": [
+		"mcp",
+		"vps",
+		"homelab"
+	],
+	"author": "Maciek Sitkowski <msitkowski94@gmail.com>",
+	"version": "0.0.1",
+	"type": "module",
+	"main": "build/index.mjs",
+	"bin": {
+		"homelab-mcp": "build/index.mjs"
+	},
+	"files": [
+		"build"
+	],
+	"scripts": {
+		"start": "node build/index.mjs",
+		"build": "bun build src/index.ts --outdir build --target node --entry-naming [dir]/[name].mjs",
+		"build:watch": "bun build --watch src/index.ts --outdir build --target node --entry-naming [dir]/[name].mjs",
+		"lint:fix": "biome check --write .",
+		"verify": "bun run build && bun lint:fix && tsc --noEmit",
+		"inspector": "bunx @modelcontextprotocol/inspector build/index.mjs",
+		"inspector:debug": "DEBUG=true bunx @modelcontextprotocol/inspector build/index.mjs",
+		"update-categories": "bun src/update-categories.ts",
+		"prepublishOnly": "bun run verify",
+		"local-release": "changeset version && changeset publish"
+	},
+	"dependencies": {
+		"@changesets/cli": "^2.29.3",
+		"@modelcontextprotocol/sdk": "^1.11.1",
+		"node-ssh": "^13.2.1",
+		"zod": "^3.24.4"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
+		"@svitejs/changesets-changelog-github-compact": "^1.2.0",
+		"@types/node": "^22.15.17",
+		"typescript": "^5.8.3"
+	}
+}
