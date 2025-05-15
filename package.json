@@ -22,7 +22,7 @@
 		"build:watch": "bun build --watch src/index.ts --outdir build --target node --entry-naming [dir]/[name].mjs",
 		"lint:fix": "biome check --write .",
 		"verify": "bun run build && bun lint:fix && tsc --noEmit",
-		"inspector": "bunx @modelcontextprotocol/inspector build/index.mjs",
+		"inspector": "bunx @modelcontextprotocol/inspector --config .cursor/mcp.json --server homelab-mcp build/index.mjs",
 		"inspector:debug": "DEBUG=true bunx @modelcontextprotocol/inspector build/index.mjs",
 		"update-categories": "bun src/update-categories.ts",
 		"prepublishOnly": "bun run verify",
@@ -31,7 +31,9 @@
 	"dependencies": {
 		"@changesets/cli": "^2.29.3",
 		"@modelcontextprotocol/sdk": "^1.11.1",
+		"@types/pg": "^8.15.2",
 		"node-ssh": "^13.2.1",
+		"pg": "^8.16.0",
 		"zod": "^3.24.4"
 	},
 	"devDependencies": {
